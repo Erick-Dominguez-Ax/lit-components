@@ -8,20 +8,42 @@ localStorage.setItem("datos" , JSON.stringify(datos))
 @customElement("my-element")
 export class MyElement extends LitElement {
   static styles = css`
-    p {
-      color: violet;
-    }
     .form{
+    backgroud-color: purple;
     color: red;
-    border: 2px solid white;
+
+    border: 2px solid black;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-items: center;
     border-radius: 10px;
     }
     
-    .button{
-      justify-content:center  
+    .btn_{
+      display:flex 
+      justify-items: center;
     }
+    
+    .click{
+      background-color: red;
+      color: white;
+      
+    }
+    
+    .usuario{
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contraseña{
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
   `;
 
   @property()
@@ -41,7 +63,7 @@ export class MyElement extends LitElement {
 
   writePassword(event:Event){
     const input = event.target as HTMLInputElement;
-     this.usuario = input.value
+     this.contraseña = input.value
      console.log(this.contraseña)
    }
 
@@ -56,23 +78,26 @@ export class MyElement extends LitElement {
 
   render() {
     return html`
-        <div class='form'> 
-        <form @submit=${this.logIn}>
-        <p>Formulario de inicio de sesión</p>
-          <div>
-          <label>Usuario</label>
+        
+        <div class="form">
+          Formulario de inicio de sesión
+          
+          <div class="usuario">
+            <label>Usuario</label>
             <input @input=${this.writeUser} placeholder="Usuario">
           </div>
-          <div>
+
+          <div class="usuario">
           <label>contraseña</label>
             <input @input=${this.writePassword} placeholder="contraseña">
-            </input>
           </div>
-            <div class="button">
-            <button type="submit">Iniciar sesión</button>
-            </div>
-          </form>
+
+          <div class="btn_">
+            <button class="click"type="submit" @click=${this.logIn}>Iniciar sesión</button>
+          </div>
+
         </div>
+        
         `;
   }
 }
